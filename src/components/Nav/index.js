@@ -1,17 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { capitalizeFirstLetter } from "../../utils/helpers";
 
 function Nav() {
-  const  categories = [
+  const  [categories] = useState([
     { name: 'commercial', description: 'Photos of grocery stores, food trucks, and other commercial projects' },
     { name: 'portraits', description: 'Portraits of people in my life' },
     { name: 'food', description: 'Delicious delicacies' },
     { name: 'landscape', description: 'Fields, farmhouses, waterfalls, and the beauty of nature' }
-  ];
-
-  const handleClick = () => {
-    console.log("click handled")
-  }
+  ]);
+  const [currentCategory, setCurrentCategory] = useState(categories[0]);
 
   return (
     <header data-testid="header" className="flex-row px-1">
@@ -32,15 +29,14 @@ function Nav() {
               Contact
             </span>
           </li>
-          {
-            categories.map((category) => (
-              <li className="mx-1" key={category.name} >
-                <span onClick={() => { handleClick(); }}>
+          {categories.map((category) => (
+              <li className={`mx-1 ${currentCategory.name === category.name && 'navActive'
+              }`} key={category.name}>
+                <span onClick={() => { setCurrentCategory(category)}}>
                  {capitalizeFirstLetter(category.name)}
                 </span>
               </li>
-            ))
-          }
+          ))}
         </ul>
       </nav>
     </header>
