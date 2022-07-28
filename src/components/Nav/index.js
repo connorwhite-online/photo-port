@@ -1,20 +1,14 @@
-import React from "react";
-import { capitalizeFirstLetter } from "../../utils/helpers";
+import React from 'react';
+import { capitalizeFirstLetter } from '../../utils/helpers';
 
 function Nav(props) {
   const {
     categories = [],
     setCurrentCategory,
-    currentCategory,
     contactSelected,
-    setContactSelected
+    currentCategory,
+    setContactSelected,
   } = props;
-
-
-  const handleClick = (item) => {
-    console.log(item);
-    return item;
-  };
 
   return (
     <header className="flex-row px-1">
@@ -31,9 +25,7 @@ function Nav(props) {
             </a>
           </li>
           <li className={`mx-2 ${contactSelected && 'navActive'}`}>
-            <span onClick={() => setContactSelected(true)}>
-              Contact
-            </span>
+            <span onClick={() => setContactSelected(true)}>Contact</span>
           </li>
           {categories.map((category) => (
             <li
